@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1"/>
+<title>AYC Security — Design Variants</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'IBM Plex Mono', monospace; background: #080C10; color: #fff; }
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&display=swap');
+.bar {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: #080C10; border-bottom: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; gap: 0; height: 54px; padding: 0 24px;
+  overflow-x: auto; overflow-y: hidden;
+}
+.bar-label { font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.35); margin-right: 20px; white-space: nowrap; }
+.tab {
+  padding: 8px 20px; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;
+  cursor: pointer; border: 1px solid rgba(255,255,255,0.12); background: transparent;
+  color: rgba(255,255,255,0.45); font-family: 'IBM Plex Mono', monospace;
+  transition: all .18s; margin-right: 6px; white-space: nowrap; flex-shrink: 0;
+}
+.tab.active { background: #C9973A; color: #000; border-color: #C9973A; font-weight: 600; }
+.tab:hover:not(.active) { color: #fff; border-color: rgba(255,255,255,0.35); }
+.badge {
+  font-size: 9px; letter-spacing: 0.08em; padding: 2px 7px;
+  border-radius: 2px; margin-left: 8px; vertical-align: middle;
+}
+.badge-a { background: rgba(201,151,58,0.2); color: #C9973A; }
+.badge-b { background: rgba(176,141,87,0.2); color: #B08D57; }
+.badge-c { background: rgba(46,124,184,0.2); color: #2E7CB8; }
+.frame-wrap { padding-top: 54px; height: 100vh; }
+iframe { width: 100%; height: 100%; border: none; display: block; }
+</style>
+</head>
+<body>
+<div class="bar">
+  <span class="bar-label">AYC Design</span>
+  <button class="tab active" onclick="show('variant-3a',this)">
+    3A — Navy &amp; Gold <span class="badge badge-a">Current Direction</span>
+  </button>
+  <button class="tab" onclick="show('variant-3b',this)">
+    3B — Warm Slate &amp; Brass <span class="badge badge-b">Premium / Law Firm</span>
+  </button>
+  <button class="tab" onclick="show('variant-3c',this)">
+    3C — Charcoal &amp; Steel <span class="badge badge-c">Corporate / Allied Universal</span>
+  </button>
+</div>
+<div class="frame-wrap">
+  <iframe id="frame" src="variant-3a.html"></iframe>
+</div>
+<script>
+function show(v,btn) {
+  document.getElementById('frame').src = v + '.html';
+  document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+}
+</script>
+</body>
+</html>
